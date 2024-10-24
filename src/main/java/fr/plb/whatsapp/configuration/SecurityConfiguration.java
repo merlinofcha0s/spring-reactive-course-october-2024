@@ -1,5 +1,6 @@
 package fr.plb.whatsapp.configuration;
 
+import fr.plb.whatsapp.configuration.security.JwtAuthenticationConverter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
@@ -28,7 +29,9 @@ public class SecurityConfiguration {
                                 .pathMatchers("/api/**").authenticated())
                 .csrf(ServerHttpSecurity.CsrfSpec::disable)
                 .cors(Customizer.withDefaults())
-                .oauth2ResourceServer(Customizer.withDefaults());
+                .oauth2ResourceServer(oAuth2ResourceServerSpec ->
+                        oAuth2ResourceServerSpec.jwt(jwt -> jwt.jwtAuthenticationConverter(new JwtAuthenticationConverter())));
+
         return http.build();
     }
 
