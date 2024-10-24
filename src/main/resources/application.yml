@@ -2,7 +2,7 @@ logging:
   level:
     ROOT: INFO
     org.springframework.data.mongodb.core.ReactiveMongoTemplate: INFO
-    org.springframework.security: DEBUG
+    org.springframework.security: INFO
     fr.codecake.whatsapp: INFO
 
 spring:
